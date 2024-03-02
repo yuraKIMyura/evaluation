@@ -1,0 +1,38 @@
+CREATE TABLE member (
+    memberno NUMBER PRIMARY KEY,
+    role NUMBER DEFAULT 0 NOT NULL,
+    id VARCHAR2(20) UNIQUE NOT NULL,
+    email VARCHAR2(60) UNIQUE NOT NULL,
+    name VARCHAR2(30) NOT NULL,
+    question VARCHAR2(200) NOT NULL,
+    answer VARCHAR2(200) NOT NULL
+);
+
+CREATE SEQUENCE member_seq START WITH 1;
+
+INSERT INTO member VALUES (member_seq.NEXTVAL, 1, 'admin', 'admin@gmail.com', '관리자', '관리자', '관리자');
+INSERT INTO member VALUES (member_seq.NEXTVAL, 0, 'yura', 'yura@gmail.com', '김유라', '오늘 날짜는?', '24년 3월 1일');
+INSERT INTO member VALUES (member_seq.NEXTVAL, 0, 'renee', 'renee@gmail.com', 'Renée Champs-du-Boisière', 'mon séjour', 'À Séoul');
+INSERT INTO member VALUES (member_seq.NEXTVAL, 0, 'naoko', 'naoko@gmail.com', 'ささみ　なおこ', '私のペットの名前は', 'モモ');
+INSERT INTO member VALUES (member_seq.NEXTVAL, 0, 'xiaoping', 'xiaoping@gmail.com', '邓小平', '我的最有名的话', '黑描白描');
+INSERT INTO member VALUES (member_seq.NEXTVAL, 0, 'june', 'june@gmail.com', '박준', '내 별명은?', '박준헤어');
+INSERT INTO member VALUES (member_seq.NEXTVAL, 0, 'lca', 'choongang@gmail.com', '이중앙', '학원 위치는?', '이대역');
+INSERT INTO member VALUES (member_seq.NEXTVAL, 0, 'kingdna', 'kingdna@gmail.com', '소수림', 'am I destined to be a king?', 'but I am already a king');
+
+
+
+CREATE TABLE board (
+    boardno NUMBER PRIMARY KEY,
+    memberno NUMBER NOT NULL,
+    
+    type VARCHAR2(10) NOT NULL,
+    regtime DATE NOT NULL,
+    hits NUMBER DEFAULT 0 NOT NULL,
+    recommends NUMBER DEFAULT 0 NOT NULL,
+    title VARCHAR2(100) NOT NULL,
+    content VARCHAR2(2000),
+    
+    FOREIGN KEY (memberno) REFERENCES member(memberno)
+);
+
+CREATE SEQUENCE board_seq START WITH 1;

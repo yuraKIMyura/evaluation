@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/board/postLoginView.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/board/readView.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/board/writeForm.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/member/joinForm.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/member/readInfoView.jsp=UTF-8

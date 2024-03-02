@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="icon" href="../img/chat.png" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <title>BLABBER | 인기게시판</title>
+</head>
+
+
+
+
+
+<body style="background-color: #fefbe9; ">
+
+  <!--NAVBAR-->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #f0a04b; font-weight:bold">
+      <a class="navbar-brand" href="postLoginView.html"><img src="../img/chat.png" alt="logo" style="width: 45px" /></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="allBoardView.do">전체<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">인기</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">베스트</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">게시판</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">익명게시판</a>
+              <a class="dropdown-item" href="#">자유게시판</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <button class="btn btn-sm btn-outline-light" style="background-color: #b27535; border: none" type="submit">
+            로그아웃
+          </button>
+        </form>
+      </div>
+    </nav>
+  </header>
+
+
+
+  <!--main-->
+  <main style="padding-top: 10rem; padding-bottom: 10rem;">
+
+    <!--첫째줄-->
+    <div class="container col-lg-11" style="background-color: #fefbe9; padding-bottom:5rem">
+
+      <div class="row">
+        <!--첫째줄 첫번째 요소-->
+        <div class="col-lg-2" style="padding-right: 10rem">
+          <table class="table">
+            <tr>
+              <td>광고공간 <br /> <img src="../img/chat.png" alt="logo" style="width: 100px" /></td>
+            </tr>
+          </table>
+        </div><!--첫째줄 첫번째 요소-->
+
+        <!--첫째줄 두번째 요소-->
+        <div class="col-lg-8" style="padding-right: 5rem">
+          <h2 class="display-6" style="color: #f0a04b; font-weight: bold; padding-bottom: 1rem">🔥 인기게시판</h2>
+          <div style="padding-top:1rem; padding-bottom: 2rem;">
+            <table class="table table-hover">
+              <thead style="background-color: #f0a04b; color:#fefbe9">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">제목</th>
+                  <th scope="col">작성자</th>
+                  <th scope="col">작성일</th>
+                  <th scope="col">조회수</th>
+                  <th scope="col">추천수</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>
+                    1. 제목이 길어지면 자동으로 ...으로 전환하는 기능이
+                    있었으면 좋겠다. 이렇게 긴 제목을 치면 다 나오는 거잖아?
+                  </td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>
+                    2. 순위, 조회수, 작성일 글자가 한줄로 나왔으면
+                    좋겠는데...
+                  </td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>
+                    3. 호버할 때 색이 노란색으로 바뀌었으면 좋겠는데 이거
+                    하기 귀찮다...
+                  </td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">7</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">8</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">9</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">10</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">11</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">12</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">13</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">14</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+                <tr>
+                  <th scope="row">15</th>
+                  <td>Larry the Bird</td>
+                  <td>글쓴이</td>
+                  <td>2024-03-01</td>
+                  <td>99999</td>
+                  <td>55555</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+
+            <a class="btn btn-warning" href="#" role="button" style="
+                background-color: #f0a04b;
+                border: none;
+                color: white;
+              ">더보기 &raquo;</a>
+          </p>
+        </div><!--첫째줄 두번째 요소-->
+
+        <!--첫째줄 세번째 요소-->
+        <div class="col-lg-2" style="padding-right: 10rem">
+          <table class="table">
+            <tr>
+              <td>광고공간 <br /> <img src="../img/chat.png" alt="logo" style="width: 100px" /></td>
+            </tr>
+          </table>
+        </div><!--첫째줄 세번째 요소-->
+  </main>
+
+
+  <!-- 중간부분 -->
+
+
+  <footer class="col-lg-12"
+    style="text-align: center ; padding-top: 10px; padding-bottom: 10px; background-color:#f0a04b;">
+
+  </footer>
+
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

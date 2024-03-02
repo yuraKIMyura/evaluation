@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+		http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="chap17" version="3.0">
+	
+	<!-- controller -->
+    
+	<servlet>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>
+                /WEB-INF/commandHandlerURI.properties
+            </param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControllerUsingFile</servlet-name>
+		<servlet-class>mvc.controller.ControllerUsingFile</servlet-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>/WEB-INF/commandHandler.properties</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ControllerUsingFile</servlet-name>
+		<url-pattern>/controllerUsingFile</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 필터 -->
+	
+	<filter>
+		<filter-name>LoginCheck</filter-name>
+		<filter-class>filter.LoginCheckFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>LoginCheck</filter-name>
+		<url-pattern>/board/*</url-pattern>
+		<url-pattern>/member/*</url-pattern>
+		<!--board 밑에 있는 모든 내용에 대해 적용한다 -->
+	</filter-mapping>
+	
+	
+	<servlet>
+		<servlet-name>DBCPInit</servlet-name>
+		<servlet-class>mvjsp.jdbc.loader.DBCPInit</servlet-class>
+		<!-- web.xml과 아래 내용이 동일해야 한다 -->
+		<init-param>
+			<param-name>jdbcdriver</param-name>
+			<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<error-page>
+		<exception-type>java.lang.RuntimeException</exception-type>
+		<location>/error_view.jsp</location>
+	</error-page>
+</web-app>
+
+<!-- DBCPInit은 servlet인데 init할 때 Class.forName을 한 번 해 줌!
+이렇게하면 처음 시작할 때 한 번만 OracleDB와 연결하면 되는 것임 -->
