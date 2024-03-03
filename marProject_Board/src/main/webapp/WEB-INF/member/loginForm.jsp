@@ -29,16 +29,16 @@
       <h1 class="h3 mb-3 font-weight-bold" style="padding-bottom: 2rem">BLABBER</h1>
 
       <label for="inputId" class="sr-only">아이디</label>
-      <input type="text" class="form-control" placeholder="아이디 " name="id" required>
+      <input type="text" class="form-control" placeholder="아이디 " name="id" value="${id}" required>
       
 
       <label for="inputEmail" class="sr-only">이메일</label>
-      <input type="email" class="form-control" placeholder="이메일" name="email" required>
+      <input type="email" class="form-control" placeholder="이메일" name="email" value="${email}" required>
 	  
 
       <div class="checkbox mb-3" style="padding-top: 1rem; padding-bottom: 0.5rem">
         <label style="font-size: small;">
-          <input type="checkbox" value="remember-me"> 로그인 정보 기억하기
+          <input type="checkbox" name="remember"> 로그인 정보 기억하기
         </label>
       </div>
       

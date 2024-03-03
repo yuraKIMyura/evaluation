@@ -25,7 +25,7 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
+<!-- 	<servlet>
 		<servlet-name>ControllerUsingFile</servlet-name>
 		<servlet-class>mvc.controller.ControllerUsingFile</servlet-class>
 		<init-param>
@@ -39,7 +39,7 @@
 		<servlet-name>ControllerUsingFile</servlet-name>
 		<url-pattern>/controllerUsingFile</url-pattern>
 	</servlet-mapping>
-	
+ -->	
 	<!-- 필터 -->
 	
 	<filter>

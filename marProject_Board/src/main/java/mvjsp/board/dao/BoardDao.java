@@ -283,6 +283,22 @@ public class BoardDao {
 
 	    return 0;
 	}
+
+	public int getHits(Connection conn, int boardno) {
+	    String sql = "SELECT hits FROM board WHERE boardno = ?";
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setInt(1, boardno);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            return rs.getInt("hits");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return 0; 
+	}
 	
 	
 }//class

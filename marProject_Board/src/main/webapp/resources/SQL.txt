@@ -36,3 +36,17 @@ CREATE TABLE board (
 );
 
 CREATE SEQUENCE board_seq START WITH 1;
+
+
+CREATE TABLE recommend(
+    serialno NUMBER PRIMARY KEY,
+    boardno NUMBER NOT NULL,
+    memberno NUMBER NOT NULL,
+    
+    FOREIGN KEY (boardno) REFERENCES board(boardno),
+    FOREIGN KEY (memberno) REFERENCES member(memberno),
+    
+    CONSTRAINT unique_recommend_constraint UNIQUE (boardno, memberno)
+);
+
+CREATE SEQUENCE recommend_seq START WITH 1;

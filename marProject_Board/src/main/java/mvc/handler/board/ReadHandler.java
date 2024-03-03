@@ -53,13 +53,13 @@ public class ReadHandler implements CommandHandler{
 		//[admin]현재 로그인한 회원이 admin role인지 확인
 		int role = loggedinMember.getRole();
 
-		System.out.println("hits before " + article.getHits());
 
 		if(role==1) hits="false";
 		//만일 hits가 false이거나(수정 후 조회) role이 1이면 조회수 증가시키지 않음
 		if(hits!=null && hits.equals("true") ) {
 			boardDao.incrementHits(conn, boardno);
-			System.out.println("hits after "+ article.getHits());
+		    int updatedHits = boardDao.getHits(conn, boardno); // Replace 'getHits' with your method to fetch hits
+		    article.setHits(updatedHits);
 		}
 		
 		
