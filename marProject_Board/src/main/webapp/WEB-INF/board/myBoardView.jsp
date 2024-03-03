@@ -114,7 +114,7 @@
               <tr>
                 <th scope="row">${board.type}</th>
                 <td>
-				<a href="readView.do?boardno=${board.boardno}" style="color: black">${board.title}</a>
+				<a href="readView.do?boardno=${board.boardno}&hits=true" style="color: black">${board.title}</a>
                 </td>
                 <td>${board.writer}</td>
                 <td>${board.regtime}</td>

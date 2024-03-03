@@ -146,17 +146,11 @@
 
 
           <div style="text-align: center; padding-top:2rem;">
-            <a class="btn btn-md" href="" role="button" style="
+            <a class="btn btn-md" href="recommend.do?boardno=${article.boardno}" role="button" style="
           background-color: #de705f;
           border: none;
           color: white;
-        ">👍 추천</a>
-            &nbsp;
-            <a class="btn btn-md" href="" role="button" style="
-            background-color: #de705f;
-            border: none;
-            color: white;
-          ">👎 비추천</a>
+        ">${isRecommended ? "추천해제": "👍 추천" }</a>
           </div>
 
           <div style="padding-top: 2rem;">

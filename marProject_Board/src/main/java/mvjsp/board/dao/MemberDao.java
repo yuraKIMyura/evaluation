@@ -45,7 +45,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				Member member = new Member(rs.getInt("memberno"), rs.getString("id"), rs.getString("email"), rs.getString("name"), rs.getString("question"), rs.getString("answer"));				
+				Member member = new Member(rs.getInt("memberno"), rs.getInt("role"), rs.getString("id"), rs.getString("email"), rs.getString("name"), rs.getString("question"), rs.getString("answer"));				
 				list.add(member);
 			}
 		} catch (SQLException e) {
@@ -94,7 +94,7 @@ public class MemberDao {
 			pstmt.setInt(1, memberno);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				member = new Member(rs.getInt("memberno"), rs.getString("id"), rs.getString("email"), rs.getString("name"), rs.getString("question"), rs.getString("answer"));
+				member = new Member(rs.getInt("memberno"), rs.getInt("role"), rs.getString("id"), rs.getString("email"), rs.getString("name"), rs.getString("question"), rs.getString("answer"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -157,7 +157,7 @@ public class MemberDao {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				member = new Member(rs.getInt("memberno"), rs.getString("id"), rs.getString("email"), rs.getString("name"), rs.getString("question"), rs.getString("answer"));
+				member = new Member(rs.getInt("memberno"), rs.getInt("role"), rs.getString("id"), rs.getString("email"), rs.getString("name"), rs.getString("question"), rs.getString("answer"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

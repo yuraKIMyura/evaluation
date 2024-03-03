@@ -13,31 +13,107 @@ import java.util.ArrayList;
 
 import mvjsp.board.model.Board;
 import mvjsp.board.model.Member;
+import mvjsp.board.model.Recommend;
 import mvjsp.jdbc.JdbcUtil;
 
-public class BoardDao {
-	private static BoardDao instance = new BoardDao();
-	public static BoardDao getInstance() {
+public class RecommendDao {
+	private static RecommendDao instance = new RecommendDao();
+	public static RecommendDao getInstance() {
 		return instance;
 	}
 
-	private BoardDao() {
+	private RecommendDao() {
 	}
 	
-	public int selectCount(Connection conn) throws SQLException {
-		Statement stmt = null;
+	
+	
+	
+	public boolean checkRecommend(Connection conn, int boardno, int memberno) {
+	    boolean hasRecommendation = false;
+	    String sql = "SELECT * FROM recommend WHERE boardno=? AND memberno=?";
+
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	    try {
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, boardno);
+	        pstmt.setInt(2, memberno);
+	        rs = pstmt.executeQuery();
+	        hasRecommendation = rs.next();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        JdbcUtil.close(rs);
+	        JdbcUtil.close(pstmt);
+	    }
+
+	    return hasRecommendation;
+	}
+	
+	public int setRecommend(Connection conn, int boardno, int memberno) {
+		String sql = "INSERT INTO recommend VALUES (recommend_seq.NEXTVAL, ?, ?)";
+		try ( 
+		        PreparedStatement pstmt = conn.prepareStatement(sql);            
+		    ) {
+		    	pstmt.setInt(1, boardno);
+		    	pstmt.setInt(2, memberno);
+		        return pstmt.executeUpdate();
+		    
+		    } catch(Exception e) {
+		        e.printStackTrace();
+		    } 
+			return 0;
+	}
+	
+	
+	public int unsetRecommend(Connection conn, int boardno, int memberno) {
+		String sql = "DELETE FROM recommend WHERE boardno = ? AND memberno = ?";
+	    try ( 
+	        PreparedStatement pstmt = conn.prepareStatement(sql);            
+	    ) {
+	        
+	        // 쿼리 실행
+	    	pstmt.setInt(1, boardno);
+	    	pstmt.setInt(2, memberno);
+	        return pstmt.executeUpdate();
+	    
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	    } 
+		return 0;
+	}
+	
+	
+	
+	public int countRecommends(Connection conn, int boardno) {
+		String sql = "SELECT COUNT (*) FROM recommend WHERE boardno=?";
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from board");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardno);
+			rs = pstmt.executeQuery();
 			rs.next();
 			return rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
 			JdbcUtil.close(rs);
-			JdbcUtil.close(stmt);
+			JdbcUtil.close(pstmt);
 		}
+		return 0;
+	
 	}
+	
+	
+	
+	
+	
+	
+	
 
+	//
 	public ArrayList<Board> selectPopular(Connection conn) {
 		ArrayList<Board> popularList = new ArrayList<>();
 		String sql = "SELECT * FROM (SELECT * FROM board ORDER BY hits DESC ) WHERE ROWNUM <= 10";
@@ -216,25 +292,7 @@ public class BoardDao {
 	}//method
 	
 	
-	public int insert(Connection conn, Board article) {
-		String sql = "INSERT INTO board VALUES (board_seq.NEXTVAL, ?, ?, ?, 0, 0, ?, ?)";
-		LocalDateTime currentTime = LocalDateTime.now();
-		Timestamp regtime = Timestamp.valueOf(currentTime);
-		try ( 
-		        PreparedStatement pstmt = conn.prepareStatement(sql);            
-		    ) {
-		    	pstmt.setInt(1, article.getMemberno());
-		    	pstmt.setString(2, article.getType());
-		    	pstmt.setTimestamp(3, regtime);
-		    	pstmt.setString(4, article.getTitle());
-		    	pstmt.setString(5, article.getContent());
-		        return pstmt.executeUpdate();
-		    
-		    } catch(Exception e) {
-		        e.printStackTrace();
-		    } 
-			return 0;
-	}
+	
 	
 	public int update(Connection conn, Board board) {
 		String sql = "UPDATE board SET type = ?, title = ?, content = ? WHERE boardno = ?";
@@ -254,29 +312,30 @@ public class BoardDao {
 		return 0;
 	}
 
-	public int delete(Connection conn, int boardno) {
-		String sql = "DELETE FROM board WHERE boardno = ?";
-	    try ( 
-	        PreparedStatement pstmt = conn.prepareStatement(sql);            
-	    ) {
-	        
-	        // 쿼리 실행
-	    	pstmt.setInt(1, boardno);
-	        return pstmt.executeUpdate();
-	    
-	    } catch(Exception e) {
-	        e.printStackTrace();
-	    } 
-		return 0;
-	}
+	
 
 	public int incrementHits(Connection conn, int boardno) {
-		String updateSql = "UPDATE board SET hits = hits + 1 WHERE boardno = ?";
-
-	    try (PreparedStatement updatePstmt = conn.prepareStatement(updateSql)) {
-	        updatePstmt.setInt(1, boardno);
-	        int rowsUpdated = updatePstmt.executeUpdate();
-	        return rowsUpdated;
+	    String selectSql = "SELECT hits FROM board WHERE boardno = ?";
+	    String updateSql = "UPDATE board SET hits = ? WHERE boardno = ?";
+	    
+	    try (
+	        PreparedStatement selectPstmt = conn.prepareStatement(selectSql);
+	        PreparedStatement updatePstmt = conn.prepareStatement(updateSql);
+	    ) {
+	        selectPstmt.setInt(1, boardno);
+	        ResultSet rs = selectPstmt.executeQuery();
+	        
+	        if (rs.next()) {
+	            int currentHits = rs.getInt("hits");
+	            
+	            int newHits = currentHits + 1;
+	            
+	            updatePstmt.setInt(1, newHits);
+	            updatePstmt.setInt(2, boardno);
+	            int rowsUpdated = updatePstmt.executeUpdate();
+	            
+	            return rowsUpdated;
+	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
